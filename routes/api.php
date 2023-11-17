@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProjectController;
 use App\Models\Project;
 use App\Models\Type;
 
@@ -25,6 +26,8 @@ Route::get('/', function () {
     'response' => Project::with('type', 'technology')->paginate(5),
     ]);
 }); */
+
+Route::get('/', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
