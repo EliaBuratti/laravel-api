@@ -28,7 +28,8 @@ Route::get('/', function () {
     ]);
 }); */
 Route::middleware(HandleCors::class)->group(function () {
-    Route::get('/project', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
+    Route::get('project', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
+    Route::get('project/{project:slug}', [ProjectController::class, 'show']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
