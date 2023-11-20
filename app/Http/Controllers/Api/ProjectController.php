@@ -12,7 +12,7 @@ class ProjectController extends Controller
 {
     public function index() {
         return response()->json([
-            'response' => Project::with('type', 'technology')->paginate(6),
+            'response' => Project::with('type', 'technology')->orderByDesc('id')->paginate(6),
             'status' => true,
         ]);
     }
