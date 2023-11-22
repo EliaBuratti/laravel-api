@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProjectController;
@@ -36,6 +37,7 @@ Route::middleware(HandleCors::class)->group(function () {
     Route::get('technology/{technology:slug}', [TechnologyController::class, 'show']);
     Route::get('type', [TypeController::class, 'index']);
     Route::get('type/{type:slug}', [TypeController::class, 'show']);
+    Route::post('contacts', [LeadController::class, 'store']);
 
 
 });
