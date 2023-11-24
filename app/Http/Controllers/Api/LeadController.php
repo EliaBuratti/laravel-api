@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\error;
+
 class LeadController extends Controller
 {
     public function store(Request $request) {
@@ -23,7 +25,7 @@ class LeadController extends Controller
 
         if($val_data->fails()) {
             return response()->json([
-                'response' =>$request->all(),
+                'errors' => $val_data->errors(),
                 'success' => false,
             ]);
         } 
