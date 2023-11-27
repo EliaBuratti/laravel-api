@@ -1,18 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="container mt-4">
-
-        {{-- @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Warning!</strong> {{ $error }}
-                </div>
-            @endforeach
-
-  {{ dd($errors->all()) }} 
-        @endif --}}
-
         <form action="{{ route('admin.type.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation">
             @csrf
             <div class="mb-3">

@@ -5,8 +5,8 @@
 
         <div class="my-4">
             <div class="card col-6 p-4 mx-auto">
-                <img width="250" src="{{ asset('storage/' . $project->cover_image) }}" class="card-img-top" alt="...">
-                {{-- <img style="aspect-ratio: 1 / 1.5" src="{{  }}" alt="{{ $project->title }}"> --}}
+                <img width="250" src="{{ asset('storage/' . $project->cover_image) }}" class="card-img-top"
+                    alt="{{ $project->title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $project->title }}</h5>
                     <p class="card-text">

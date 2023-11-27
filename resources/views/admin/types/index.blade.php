@@ -44,7 +44,6 @@
                                     </button>
 
                                     <!-- Modal Body -->
-                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
                                     <div class="modal fade" id="modalId-{{ $type->id }}" tabindex="-1"
                                         data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                         aria-labelledby="modalTitle-{{ $type->id }}" aria-hidden="true">
