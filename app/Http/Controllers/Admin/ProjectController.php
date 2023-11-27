@@ -25,7 +25,7 @@ class ProjectController extends Controller
         $types = Type::all();
         $projects = Project::orderByDesc('id')->paginate(15);
 
-        return view('admin.project.index', compact('types', 'projects'));
+        return view('admin.projects.index', compact('types', 'projects'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.project.create', compact('types', 'technologies'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -70,7 +70,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.project.show', compact('project', 'types'));
+        return view('admin.projects.show', compact('project', 'types'));
     }
 
     /**
@@ -80,7 +80,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.project.edit', compact('project', 'types', 'technologies'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**

@@ -19,7 +19,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::orderByDesc('id')->paginate(15);
-        return view('admin.type.index', compact('types'));
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -27,7 +27,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.type.create');
+        return view('admin.types.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        return view('admin.type.show', compact('type'));
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -58,7 +58,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        return view('admin.type.edit', compact('type'));
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
