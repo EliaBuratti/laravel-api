@@ -39,7 +39,7 @@ class NewLeadEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.new-lead-email',
+            markdown: 'mail.new-lead-email',
         );
     }
 

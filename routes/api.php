@@ -21,26 +21,12 @@ use Illuminate\Http\Middleware\HandleCors;
 |
 */
 
-/* 
-route api prova funzionante
 
-Route::get('/', function () {
-
-    return response()->json([
-    'response' => Project::with('type', 'technology')->paginate(5),
-    ]);
-}); */
-Route::middleware(HandleCors::class)->group(function () {
-    Route::get('project', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
-    Route::get('project/{project:slug}', [ProjectController::class, 'show']);
-    Route::get('technology', [TechnologyController::class, 'index']);
-    Route::get('technology/{technology:slug}', [TechnologyController::class, 'show']);
-    Route::get('type', [TypeController::class, 'index']);
-    Route::get('type/{type:slug}', [TypeController::class, 'show']);
-    Route::post('contacts', [LeadController::class, 'store']);
-
-
-});
+Route::get('project', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
+Route::get('project/{project:slug}', [ProjectController::class, 'show']);
+Route::get('technology/{technology:slug}', [TechnologyController::class, 'show']);
+Route::get('type/{type:slug}', [TypeController::class, 'show']);
+Route::post('contacts', [LeadController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
