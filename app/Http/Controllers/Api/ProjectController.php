@@ -37,9 +37,22 @@ class ProjectController extends Controller
     }
 
     public function typeFilter($id) {
-        return response()->json([
-            'response' => Project::with('type', 'technology')->where('type_id', $id)->orderByDesc('id')->paginate(6),
-            'status' => true,
-        ]);
+
+        $type = Type::all()->count();
+        
+        if($type >= $id) {
+            return response()->json([
+                'response' => Project::with('type', 'technology')->where('type_id', $id)->orderByDesc('id')->paginate(6),
+                'status' => true,
+            ]);
+
+        } else {
+
+            return response()->json([
+                'response' => 'Project not found',
+                'status' => false,
+            ]);
+
+    }
     }
 }
