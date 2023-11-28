@@ -24,6 +24,7 @@ use Illuminate\Http\Middleware\HandleCors;
 
 Route::get('project', [ProjectController::class, 'index'])->name('home'); //rotta per restituire file json tramite un controller
 Route::get('project/{project:slug}', [ProjectController::class, 'show']);
+Route::get('project/type/{project:type_id}', [ProjectController::class, 'typeFilter']); //filter by type
 Route::get('technology', [TechnologyController::class, 'index']); //for filter
 Route::get('type', [TypeController::class, 'index']); //for filter
 Route::get('technology/{technology:slug}', [TechnologyController::class, 'show']);

@@ -35,4 +35,11 @@ class ProjectController extends Controller
         }
         
     }
+
+    public function typeFilter($id) {
+        return response()->json([
+            'response' => Project::with('type', 'technology')->where('type_id', $id)->orderByDesc('id')->paginate(6),
+            'status' => true,
+        ]);
+    }
 }
