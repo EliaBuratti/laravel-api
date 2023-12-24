@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    @dd($mail);
+    {{-- @dd($mail); --}}
 @endsection
+
+@vite(['resources/js/ai-assistant.js'])
