@@ -109,6 +109,12 @@
                                         <i class="fa-solid fa-tags fa-lg fa-fw"></i> Technology
                                     </a>
                                 </li>
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.index' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.mail.index') }}">
+                                        <i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messages
+                                    </a>
+                                </li>
 
                             </ul>
 

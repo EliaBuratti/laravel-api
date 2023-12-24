@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\admin\TypeController;
 use App\Http\Controllers\admin\TechnologyController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     ]);
     Route::resource('dashboard/technology', TechnologyController::class)->parameters([
         'technology' => 'technology:slug'
+    ]);
+    Route::resource('dashboard/mail', MailController::class)->parameters([
+        'mail' => 'mail:id'
     ]);
 });
 
