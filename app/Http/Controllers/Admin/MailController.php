@@ -12,8 +12,8 @@ class MailController extends Controller
     public function index()
     {
         //dd(Lead::all());
-        $mail = Lead::orderByDesc('id')->paginate(10);
-        return view('admin.mail.index', compact('mail'));
+        $mails = Lead::orderByDesc('id')->paginate(10);
+        return view('admin.mail.index', compact('mails'));
     }
 
     public function assistantResponse(Request $request) 
