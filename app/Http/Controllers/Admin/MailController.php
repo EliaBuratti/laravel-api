@@ -48,5 +48,7 @@ class MailController extends Controller
         $response = $result['choices'][0]['message']['content'];
         $responseText = json_decode($response,true)['response'];
         dd($responseText); //restituisce provaresponse sopra
+
+        /* da stampare in pagina alla richiesta */
     }
 }

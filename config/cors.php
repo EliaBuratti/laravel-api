@@ -23,7 +23,7 @@ return [
 
     'allowed_origins_patterns' => ['*'],
 
-    'allowed_headers' => [], //era con asterisco
+    'allowed_headers' => ['*'], //era con asterisco
 
     'exposed_headers' => ['*'],
 

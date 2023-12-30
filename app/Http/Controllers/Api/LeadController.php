@@ -19,7 +19,7 @@ class LeadController extends Controller
             'name' => 'required|max:50',
             'object' => 'required|max:100',
             'email' => 'required|email',
-            'message' => 'required',
+            'message' => 'required|min:10|max:5000',
         ]);
 
 
