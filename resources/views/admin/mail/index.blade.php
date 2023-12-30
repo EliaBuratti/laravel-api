@@ -56,14 +56,13 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        {{-- mettere qui il pulsante genera risposta
-                                                            
-                                                            <form action="{{ route('admin.mail.destroy', $mail->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Yes!</button>
-                                                        </form> --}}
+
+                                                        <form action="{{ route('admin.assistant', $mail->id) }}"
+                                                            method="get">
+
+                                                            <button type="submit" class="btn btn-danger">Generate
+                                                                response</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

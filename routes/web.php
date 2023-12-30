@@ -58,6 +58,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('dashboard/mail', MailController::class)->parameters([
         'mail' => 'mail:id'
     ]);
+    Route::get('dashboard/mail/assistant/{mail:id}', [MailController::class, 'assistantResponse'])->name('assistant');
 });
 
 
