@@ -37,8 +37,107 @@
                                             Show
                                         </button>
 
-                                        <!-- Modal Body -->
+
+                                        {{-- modal test --}}
                                         <div class="modal fade" id="modalId-{{ $mail->id }}" tabindex="-1"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                            aria-labelledby="modalTitle-{{ $mail->id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalTitleId-{{ $mail->id }}">
+                                                            Email:
+                                                            {{ $mail->email }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mt-3">
+                                                            Subject: {{ $mail->object }}
+                                                        </div>
+                                                        <div class="mt-3">
+                                                            Message:
+                                                            <p class="mt-1">{{ $mail->message }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+
+                                                        <button class="btn btn-primary"
+                                                            data-bs-target="#exampleModalToggle2"
+                                                            data-bs-toggle="modal">Response</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Response
+                                                            to: {{ $mail->email }}
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('admin.mail.store') }}" method="POST">
+                                                            <input type="hidden" class="form-control" name="name"
+                                                                id="name" aria-describedby="helpId"
+                                                                value="{{ $mail->name }}">
+                                                            <div class="mb-3">
+                                                                <input type="text" class="form-control" name="object"
+                                                                    id="object" aria-describedby="helpId"
+                                                                    placeholder="Subject"
+                                                                    value="RESPONSE CONTACT: {{ $mail->object }}">
+                                                                <small id="helpId" class="form-text text-muted">Write an
+                                                                    subject</small>
+                                                                {{--           va controllata la modale con gli errori                                                      <div class="alert alert-danger" role="alert"
+                                                                    v-if="errors.object">
+                                                                    <strong>Errors!</strong>
+                                                                    <span
+                                                                        v-for="message in errors.object">{{ message }}</span>
+                                                                </div> --}}
+
+                                                            </div>
+                                                            <input type="hidden" class="form-control" name="email"
+                                                                id="email" value="{{ $mail->email }}">
+                                                            <div class="mb-3">
+                                                                <label for="message" class="form-label">Your
+                                                                    Response</label>
+                                                                <textarea class="form-control" name="message" id="message" rows="10" cols="50"></textarea>
+
+                                                            </div>
+
+                                                            <button type="submit"
+                                                                class="btn btn-dark rounded-0">Send</button>
+                                                            <form action="{{ route('admin.assistant', $mail->id) }}"
+                                                                method="get">
+
+                                                                <button type="submit" class="btn btn-info">Generate
+                                                                    response</button>
+                                                            </form>
+                                                        </form>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary"
+                                                            data-bs-target="#modalId-{{ $mail->id }}"
+                                                            data-bs-toggle="modal">Go back</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- modal test end --}}
+
+                                        <!-- Modal Body -->
+                                        {{--                                         <div class="modal fade" id="modalId-{{ $mail->id }}" tabindex="-1"
                                             data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                             aria-labelledby="modalTitle-{{ $mail->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
@@ -52,21 +151,36 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         {{ $mail->message }}
+
+
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                        <div class="mb-3">
+                                                            <label for="response" class="form-label">Message</label>
+                                                            <input type="text" class="form-control" name="response"
+                                                                id="response" aria-describedby="response-message"
+                                                                placeholder="Type your response here" />
+                                                            <small id="response-message"
+                                                                class="form-text text-muted">Respond to
+                                                                {{ $mail->email }}</small>
+                                                        </div>
 
-                                                        <form action="{{ route('admin.assistant', $mail->id) }}"
-                                                            method="get">
+                                                        <div class="content-lead">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
 
-                                                            <button type="submit" class="btn btn-danger">Generate
-                                                                response</button>
-                                                        </form>
+                                                            <form action="{{ route('admin.assistant', $mail->id) }}"
+                                                                method="get">
+
+                                                                <button type="submit" class="btn btn-info">Generate
+                                                                    response</button>
+                                                            </form>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <div class="eb_delete">
