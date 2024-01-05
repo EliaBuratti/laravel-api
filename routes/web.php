@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\admin\TypeController;
 use App\Http\Controllers\admin\TechnologyController;
+use App\Http\Controllers\Api\LeadController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 
@@ -55,10 +56,20 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('dashboard/technology', TechnologyController::class)->parameters([
         'technology' => 'technology:slug'
     ]);
-    Route::resource('dashboard/mail', MailController::class)->parameters([
+    Route::get('dashboard/mail/sent', [MailController::class, 'index'])->name('mail.sent');
+    Route::post('dashboard/mail/sent', [MailController::class, 'store'])->name('mail.store');
+    Route::delete('dashboard/mail/sent/{id}', [MailController::class, 'destroy'])->name('mail.destroy');
+
+    Route::get('dashboard/mail/leads', [LeadController::class, 'index'])->name('mail.leads');
+    Route::delete('dashboard/mail/leads/{id}', [MailController::class, 'destroy'])->name('mail.destroy');
+    
+/*     Route::resource('dashboard/mail', MailController::class)->parameters([
         'mail' => 'mail:id'
-    ]);
-    Route::get('dashboard/mail/assistant/{mail:id}', [MailController::class, 'assistantResponse'])->name('assistant');
+    ]); */
+    Route::get('dashboard/mail/assistant/{id}', [MailController::class, 'assistantResponse'])->name('assistant');
+
+    //Route::post('dashboard/response', [MailController::class, 'store'])->name('response');
+
 });
 
 

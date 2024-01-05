@@ -21,14 +21,16 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Message</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Handle</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($mails as $mail)
                             <tr class="table-primary">
-                                <th scope="row">{{ $mail->id }}</th>
-                                <td>{{ $mail->name }}</td>
+                                <th scope="row">{{ $mail->name }}</th>
+                                <td>{{ $mail->email }}</td>
+                                <td>{{ $mail->created_at }}</td>
                                 <td class="d-flex align-items-center ">
                                     <div class="eb_show-message">
                                         <!-- Modal trigger button -->
@@ -65,18 +67,20 @@
                                                             data-bs-dismiss="modal">Close</button>
 
                                                         <button class="btn btn-primary"
-                                                            data-bs-target="#exampleModalToggle2"
+                                                            data-bs-target="#modalId-{{ $mail->id }}2"
                                                             data-bs-toggle="modal">Response</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-                                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                        <div class="modal fade" id="modalId-{{ $mail->id }}2" tabindex="-1"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                            aria-labelledby="modalTitle-{{ $mail->id }}2" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Response
+                                                        <h1 class="modal-title fs-5"
+                                                            id="modalTitleId-{{ $mail->id }}2">Response
                                                             to: {{ $mail->email }}
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -84,6 +88,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="{{ route('admin.mail.store') }}" method="POST">
+                                                            @csrf
                                                             <input type="hidden" class="form-control" name="name"
                                                                 id="name" aria-describedby="helpId"
                                                                 value="{{ $mail->name }}">

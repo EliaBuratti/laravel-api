@@ -110,9 +110,15 @@
                                     </a>
                                 </li>
                                 <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.index' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.mail.index') }}">
-                                        <i class="fa-solid fa-envelope fa-lg fa-fw"></i> Messages
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.leads' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.mail.leads') }}">
+                                        <i class="fa-solid fa-envelope fa-lg fa-fw"></i> Leads
+                                    </a>
+                                </li>
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.sent' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.mail.sent') }}">
+                                        <i class="fa-solid fa-paper-plane fa-lg fa-fw"></i> Sent
                                     </a>
                                 </li>
 

@@ -13,8 +13,19 @@ use function Laravel\Prompts\error;
 
 class LeadController extends Controller
 {
+
+    public function index()
+    {
+        //dd(Lead::all());
+        $mails = Lead::orderByDesc('id')->where('mailType', '=', 'New Lead')->paginate(10);
+        return view('admin.mail.leads', compact('mails'));
+    }
+
     public function store(Request $request) {
 
+        //dd($request);
+        $request['mailType'] = 'New Lead';
+        
         $val_data = Validator::make($request->all(), [
             'name' => 'required|max:50',
             'object' => 'required|max:100',
@@ -30,6 +41,7 @@ class LeadController extends Controller
             ]);
         } 
 
+
         $new_lead = Lead::create($request->all());
 
     
@@ -39,9 +51,16 @@ class LeadController extends Controller
                 'response' => 'Thank you, for contact me!',
                 'success' => true,
             ]);
-
-
-
         
+    }
+
+    public function destroy(Lead $lead)
+    {
+
+        dd($lead);
+
+        $lead->delete();
+
+        return to_route('admin.project.index')->with('message', 'Delete sucessfully');
     }
 }
