@@ -19,15 +19,16 @@ class MailController extends Controller
         return view('admin.mail.response', compact('mails'));
     }
 
-    public function assistantResponse(Request $request) 
+    public function assistantResponse($mailId) 
     {
-        var_dump(env('KEY_OPENAI'));
+        $message = Lead::find($mailId)->message;
+        //var_dump(env('KEY_OPENAI'));
         //dd($request);
-        $provaRequeest = 'ciao, ti contatto perchè ho visto i tuoi progetti, volevo dirti che sono moto belli e vorei proporti una collaborazione, cosa ne pensi?';
-        $provaResponse = 'Grazie per i complimenti! Sono aperto alle collaborazioni. Mi piacerebbe saperne di più sui dettagli del progetto che hai in mente.';
+/*         $provaResponse = 'Grazie per i complimenti! Sono aperto alle collaborazioni. Mi piacerebbe saperne di più sui dettagli del progetto che hai in mente.';
 
-        return response($provaRequeest);
-        dd('sono oltre');
+        return response($provaResponse);
+
+        dd('sono oltre'); */
         
         $message = Http::withoutVerifying()->withHeaders([
             'Content-Type' => 'application/json',
@@ -41,7 +42,7 @@ class MailController extends Controller
                 ],
                 [
                     'role' => 'user',
-                    'content' => $provaRequeest ,
+                    'content' => $message ,
                 ],
             ],
                 'temperature' => 0.7,
@@ -50,9 +51,7 @@ class MailController extends Controller
         $result = $message->json();
         $response = $result['choices'][0]['message']['content'];
         $responseText = json_decode($response,true)['response'];
-        dd($responseText); //restituisce provaresponse sopra
-
-        /* da stampare in pagina alla richiesta */
+        return response($responseText);
     }
 
     public function store(Request $request) {

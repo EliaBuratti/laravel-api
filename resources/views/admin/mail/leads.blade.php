@@ -112,19 +112,16 @@
                                                             <div class="mb-3">
                                                                 <label for="message" class="form-label">Your
                                                                     Response</label>
-                                                                <textarea class="form-control" name="message" id="message" rows="10" cols="50"></textarea>
+                                                                <textarea class="form-control" name="messageResponse" id="messageResponse" rows="10" cols="50"></textarea>
 
                                                             </div>
 
                                                             <button type="submit"
                                                                 class="btn btn-dark rounded-0">Send</button>
-                                                            <form action="{{ route('admin.assistant', $mail->id) }}"
-                                                                method="get">
-
-                                                                <button type="submit" class="btn btn-info">Generate
-                                                                    response</button>
-                                                            </form>
                                                         </form>
+
+                                                        <button type="submit" class="btn btn-info" id="btnAssistant">
+                                                            Generate response</button>
 
                                                     </div>
                                                     <div class="modal-footer">
@@ -231,7 +228,7 @@
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
 
-                                                        <form action="{{ route('admin.mail.destroy', $mail->id) }}"
+                                                        <form action="{{ route('admin.mail.lead.destroy', $mail->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -272,8 +269,27 @@
 
         </div>
     </main>
+
+    <script>
+        const textField = document.getElementById('messageResponse');
+        const btnAi = document.getElementById('btnAssistant');
+        btnAi.addEventListener('click', genResponse);
+
+        function genResponse() {
+
+            axios.get('{{ route('admin.ai.assistant', $mail->id) }}')
+                .then(function(response) {
+                    console.log(response.data);
+                    textField.innerHTML = response.data;
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
+    </script>
 @endsection
 
-
-{{-- @vite(['resources/js/ai-assistant.js'])
- --}}
+{{-- @section('scripts')
+    @vite(['resources/js/ai-assistant.js'])
+@endsection --}}

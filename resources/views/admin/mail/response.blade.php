@@ -130,7 +130,7 @@
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
 
-                                                        <form action="{{ route('admin.mail.destroy', $mail->id) }}"
+                                                        <form action="{{ route('admin.mail.sent.destroy', $mail->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')

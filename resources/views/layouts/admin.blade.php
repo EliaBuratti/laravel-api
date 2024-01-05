@@ -19,6 +19,11 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+        <!-- axios -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.4/axios.min.js"
+            integrity="sha512-ANd7ZJmixP2T0hxOP4bS6hkci01fxyrQSyRdaY7IsWq1WlKsD0WwWBDVDZbnMR7CJZVKCTkDx/q5D5n2C2C+vg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
         <!-- Usando Vite -->
         @vite(['resources/js/app.js'])
     </head>
@@ -135,6 +140,8 @@
             </div>
 
         </div>
+
+        @yield('scripts')
     </body>
 
     </html>
