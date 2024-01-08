@@ -57,7 +57,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         'technology' => 'technology:slug'
     ]);
     Route::get('dashboard/mail/sent', [MailController::class, 'index'])->name('mail.sent');
-    Route::post('dashboard/mail/sent', [MailController::class, 'store'])->name('mail.store');
+    Route::post('dashboard/mail/sent', [MailController::class, 'store'])->name('mail.store.response');
     Route::delete('dashboard/mail/sent/{id}', [MailController::class, 'destroy'])->name('mail.sent.destroy');
 
     Route::get('dashboard/mail/leads', [LeadController::class, 'index'])->name('mail.leads');

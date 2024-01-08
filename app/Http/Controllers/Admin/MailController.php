@@ -22,13 +22,8 @@ class MailController extends Controller
     public function assistantResponse($mailId) 
     {
         $message = Lead::find($mailId)->message;
-        //var_dump(env('KEY_OPENAI'));
-        //dd($request);
-/*         $provaResponse = 'Grazie per i complimenti! Sono aperto alle collaborazioni. Mi piacerebbe saperne di più sui dettagli del progetto che hai in mente.';
 
-        return response($provaResponse);
-
-        dd('sono oltre'); */
+        //return response('mailcontroller');
         
         $message = Http::withoutVerifying()->withHeaders([
             'Content-Type' => 'application/json',
@@ -68,7 +63,7 @@ class MailController extends Controller
         ]);
 
         if($val_data->fails()) {
-            return  $val_data->errors();
+            return  back()->withErrors($val_data->errors())->withInput($request->only('name', 'email','object','message'));
         }
 
 

@@ -45,7 +45,7 @@ class LeadController extends Controller
         $new_lead = Lead::create($request->all());
 
     
-        Mail::to('info@elia.com')->send(new NewLeadEmail($new_lead));
+        Mail::to('elia.buratti.dev@gmail.com')->send(new NewLeadEmail($new_lead));
     
             return response()->json([
                 'response' => 'Thank you, for contact me!',

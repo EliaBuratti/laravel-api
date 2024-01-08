@@ -87,7 +87,8 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('admin.mail.store') }}" method="POST">
+                                                        <form action="{{ route('admin.mail.store.response') }}"
+                                                            method="POST">
                                                             @csrf
                                                             <input type="hidden" class="form-control" name="name"
                                                                 id="name" aria-describedby="helpId"
@@ -96,31 +97,33 @@
                                                                 <input type="text" class="form-control" name="object"
                                                                     id="object" aria-describedby="helpId"
                                                                     placeholder="Subject"
-                                                                    value="RESPONSE CONTACT: {{ $mail->object }}">
+                                                                    value="RESPONSE CONTACT: {{ $mail->object }}" required>
                                                                 <small id="helpId" class="form-text text-muted">Write an
                                                                     subject</small>
-                                                                {{--           va controllata la modale con gli errori                                                      <div class="alert alert-danger" role="alert"
-                                                                    v-if="errors.object">
-                                                                    <strong>Errors!</strong>
-                                                                    <span
-                                                                        v-for="message in errors.object">{{ message }}</span>
-                                                                </div> --}}
-
+                                                                {{--                                                                 @error('object')
+                                                                    <div class="alert alert-danger alert-dismissible fade show mt-3"
+                                                                        role="alert">
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="alert" aria-label="Close"></button>
+                                                                        <strong>Attenzione!</strong> {{ $message }}
+                                                                    </div>
+                                                                @enderror --}}
                                                             </div>
                                                             <input type="hidden" class="form-control" name="email"
                                                                 id="email" value="{{ $mail->email }}">
                                                             <div class="mb-3">
                                                                 <label for="message" class="form-label">Your
                                                                     Response</label>
-                                                                <textarea class="form-control" name="messageResponse" id="messageResponse" rows="10" cols="50"></textarea>
-
+                                                                <textarea class="form-control" name="message" id="messageResponse" rows="10" cols="50" required minlength="10"
+                                                                    required></textarea>
                                                             </div>
 
                                                             <button type="submit"
                                                                 class="btn btn-dark rounded-0">Send</button>
                                                         </form>
 
-                                                        <button type="submit" class="btn btn-info" id="btnAssistant">
+                                                        <button type="submit" class="btn btn-info" id="btnAssistant"
+                                                            onclick="genResponse({{ $mail->id }})">
                                                             Generate response</button>
 
                                                     </div>
@@ -136,53 +139,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- modal test end --}}
-
-                                        <!-- Modal Body -->
-                                        {{--                                         <div class="modal fade" id="modalId-{{ $mail->id }}" tabindex="-1"
-                                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                            aria-labelledby="modalTitle-{{ $mail->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                                role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalTitleId-{{ $mail->id }}">
-                                                            {{ $mail->email }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {{ $mail->message }}
-
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="mb-3">
-                                                            <label for="response" class="form-label">Message</label>
-                                                            <input type="text" class="form-control" name="response"
-                                                                id="response" aria-describedby="response-message"
-                                                                placeholder="Type your response here" />
-                                                            <small id="response-message"
-                                                                class="form-text text-muted">Respond to
-                                                                {{ $mail->email }}</small>
-                                                        </div>
-
-                                                        <div class="content-lead">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-
-                                                            <form action="{{ route('admin.assistant', $mail->id) }}"
-                                                                method="get">
-
-                                                                <button type="submit" class="btn btn-info">Generate
-                                                                    response</button>
-                                                            </form>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                     </div>
 
                                     <div class="eb_delete">
@@ -273,11 +229,10 @@
     <script>
         const textField = document.getElementById('messageResponse');
         const btnAi = document.getElementById('btnAssistant');
-        btnAi.addEventListener('click', genResponse);
 
-        function genResponse() {
+        function genResponse(id) {
 
-            axios.get('{{ route('admin.ai.assistant', $mail->id) }}')
+            axios.get(`http://127.0.0.1:8000/admin/dashboard/mail/lead/assistant/${id}`)
                 .then(function(response) {
                     console.log(response.data);
                     textField.innerHTML = response.data;
