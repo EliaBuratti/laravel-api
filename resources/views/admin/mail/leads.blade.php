@@ -97,7 +97,7 @@
                                                                 <input type="text" class="form-control" name="object"
                                                                     id="object" aria-describedby="helpId"
                                                                     placeholder="Subject"
-                                                                    value="RESPONSE CONTACT: {{ $mail->object }}" required>
+                                                                    value="Response To: {{ $mail->object }}" required>
                                                                 <small id="helpId" class="form-text text-muted">Write an
                                                                     subject</small>
                                                                 {{--                                                                 @error('object')

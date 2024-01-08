@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\NewLeadEmail;
+use App\Mail\ResponseEmail;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -70,7 +70,7 @@ class MailController extends Controller
         $new_lead = Lead::create($request->all());
 
     
-        Mail::to($request->email)->send(new NewLeadEmail($new_lead));
+        Mail::to($request->email)->send(new ResponseEmail($new_lead));
     
             return back()->with('message', 'Mail sent!');
         
