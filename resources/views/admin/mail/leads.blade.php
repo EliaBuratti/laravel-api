@@ -94,12 +94,11 @@
                                                                 id="name" aria-describedby="helpId"
                                                                 value="{{ $mail->name }}">
                                                             <div class="mb-3">
+                                                                <label id="helpId" class="form-label">Subject</label>
                                                                 <input type="text" class="form-control" name="object"
                                                                     id="object" aria-describedby="helpId"
                                                                     placeholder="Subject"
                                                                     value="Response To: {{ $mail->object }}" required>
-                                                                <small id="helpId" class="form-text text-muted">Write an
-                                                                    subject</small>
                                                                 {{--                                                                 @error('object')
                                                                     <div class="alert alert-danger alert-dismissible fade show mt-3"
                                                                         role="alert">
@@ -118,17 +117,28 @@
                                                                     required></textarea>
                                                             </div>
 
-                                                            <button type="submit"
-                                                                class="btn btn-dark rounded-0">Send</button>
+                                                            <button type="submit" class="btn btn-primary">Send <i
+                                                                    class="fa-regular fa-paper-plane fa-lg fa-fw"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-success text-white"
+                                                                id="btnAssistant"
+                                                                onclick="genResponse({{ $mail->id }})">
+                                                                <span id="eb_loading" class="d-none">
+                                                                    <i
+                                                                        class="fa-solid fa-circle-notch fa-spin fa-spin-reverse fa-lg fa-fw"></i>
+                                                                </span>
+                                                                <span id="eb_text-btn">
+
+                                                                    Generate response <i
+                                                                        class="fa-solid fa-robot fa-lg fa-fw"></i>
+                                                                </span>
+                                                            </button>
                                                         </form>
 
-                                                        <button type="submit" class="btn btn-info" id="btnAssistant"
-                                                            onclick="genResponse({{ $mail->id }})">
-                                                            Generate response</button>
 
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button class="btn btn-primary"
+                                                        <button class="btn btn-outline-primary"
                                                             data-bs-target="#modalId-{{ $mail->id }}"
                                                             data-bs-toggle="modal">Go back</button>
                                                         <button type="button" class="btn btn-secondary"
@@ -229,11 +239,17 @@
     <script>
         const textField = document.getElementById('messageResponse');
         const btnAi = document.getElementById('btnAssistant');
+        const loadingAi = document.getElementById('eb_loading');
+        const textbtn = document.getElementById('eb_text-btn');
 
         function genResponse(id) {
-
+            textbtn.classList.add('d-none');
+            loadingAi.classList.remove('d-none');
             axios.get(`http://127.0.0.1:8000/admin/dashboard/mail/lead/assistant/${id}`)
                 .then(function(response) {
+                    loadingAi.classList.add('d-none');
+                    textbtn.classList.remove('d-none');
+
                     console.log(response.data);
                     textField.innerHTML = response.data;
 
