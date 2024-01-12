@@ -88,7 +88,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="{{ route('admin.mail.store.response') }}"
-                                                            method="POST">
+                                                            method="POST" id="send-mail{{ $mail->id }}"
+                                                            onsubmit="sendMail({{ $mail->id }})">
                                                             @csrf
                                                             <input type="hidden" class="form-control" name="name"
                                                                 id="name" aria-describedby="helpId"
@@ -113,12 +114,15 @@
                                                             <div class="mb-3">
                                                                 <label for="message" class="form-label">Your
                                                                     Response</label>
-                                                                <textarea class="form-control" name="message" id="messageResponse" rows="10" cols="50" required minlength="10"
-                                                                    required></textarea>
+                                                                <textarea class="form-control" name="message" id="messageResponse" rows="10" cols="50" required
+                                                                    minlength="10" required></textarea>
                                                             </div>
 
-                                                            <button type="submit" class="btn btn-primary">Send <i
-                                                                    class="fa-regular fa-paper-plane fa-lg fa-fw"></i>
+                                                            <button type="submit" class="btn btn-primary"
+                                                                id="btn-send{{ $mail->id }}">
+                                                                Send
+                                                                <i class="fa-regular fa-paper-plane fa-lg fa-fw"></i>
+
                                                             </button>
                                                             <button type="button" class="btn btn-success text-white"
                                                                 id="btnAssistant"
@@ -242,14 +246,25 @@
         const loadingAi = document.getElementById('eb_loading');
         const textbtn = document.getElementById('eb_text-btn');
 
+
+
+        function sendMail(id) {
+            let sendBtn = document.getElementById(`btn-send${id}`);
+            sendBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin fa-spin-reverse fa-lg fa-fw"></i>';
+            sendBtn.disabled = true;
+        }
+
         function genResponse(id) {
+
             textbtn.classList.add('d-none');
             loadingAi.classList.remove('d-none');
+
             axios.get(`http://127.0.0.1:8000/admin/dashboard/mail/lead/assistant/${id}`)
                 .then(function(response) {
                     loadingAi.classList.add('d-none');
                     textbtn.classList.remove('d-none');
 
+                    console.log(typeof response);
                     console.log(response.data);
                     textField.innerHTML = response.data;
 
