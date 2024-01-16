@@ -85,9 +85,6 @@
             <div class="container-fluid vh-100">
                 <div class="row h-100" id="container-page">
 
-                    <span class="toggle-sidebar d-none d-md-block">
-                        <i class="fa-solid fa-arrow-left fa-fw fa-lg"></i>
-                    </span>
                     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
 
                         <div class=" pt-3">
@@ -137,7 +134,10 @@
 
 
 
-                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-content">
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 position-relative h-100" id="main-content">
+                        <span class="toggle-sidebar d-none d-md-block">
+                            <i class="fa-solid fa-arrow-left fa-fw fa-lg"></i>
+                        </span>
                         @yield('content')
                     </main>
                 </div>

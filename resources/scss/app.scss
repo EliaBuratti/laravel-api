@@ -11,8 +11,8 @@
 
 .toggle-sidebar {
     position: absolute;
-    top: 8%;
-    left: 20%;
+    top: 50%;
+    left: 0;
     width: 1.5rem;
     transition: all 0.5s;
     transform: scaleX(1);
@@ -28,6 +28,4 @@
 
 .eb_rotate {
     transform: rotate(180deg);
-    translate: (50%, -50%);
-    left: 4%;
 }
