@@ -83,11 +83,13 @@
 
 
             <div class="container-fluid vh-100">
-                <div class="row h-100">
-                    <!-- Definire solo parte del menu di navigazione inizialmente per poi
-                    aggiungere i link necessari giorno per giorno
-                    -->
+                <div class="row h-100" id="container-page">
+
+                    <span class="toggle-sidebar d-none d-md-block">
+                        <i class="fa-solid fa-arrow-left fa-fw fa-lg"></i>
+                    </span>
                     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+
                         <div class=" pt-3">
                             <ul class="nav flex-column">
                                 <li
@@ -133,7 +135,9 @@
                         </div>
                     </nav>
 
-                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="main-content">
                         @yield('content')
                     </main>
                 </div>
