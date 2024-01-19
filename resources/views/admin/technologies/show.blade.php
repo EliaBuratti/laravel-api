@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
+        <h2 class="fs-4 text-secondary py-4">
             {{ __('Showing technology: ' . $technology->name) }}
         </h2>
 

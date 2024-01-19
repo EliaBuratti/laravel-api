@@ -9,6 +9,19 @@
     }
 } */
 
+/* utilities */
+
+$hNav: 3.5rem;
+
+
+header {
+    height: $hNav;
+}
+
+.eb_height {
+    height: calc(100vh - $hNav);
+}
+
 .toggle-sidebar {
     position: absolute;
     top: 50%;

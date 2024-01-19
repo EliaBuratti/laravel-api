@@ -82,10 +82,11 @@
 
 
 
-            <div class="container-fluid vh-100">
+            <div class="container-fluid">
                 <div class="row h-100" id="container-page">
 
-                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+                    <nav id="sidebarMenu"
+                        class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse  eb_height">
 
                         <div class=" pt-3">
                             <ul class="nav flex-column">
@@ -134,7 +135,8 @@
 
 
 
-                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 position-relative h-100" id="main-content">
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 position-relative  eb_height overflow-y-auto"
+                        id="main-content">
                         <span class="toggle-sidebar d-none d-md-block">
                             <i class="fa-solid fa-arrow-left fa-fw fa-lg"></i>
                         </span>

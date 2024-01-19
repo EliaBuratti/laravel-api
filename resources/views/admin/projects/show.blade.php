@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <div class="my-4">
+        <div class="py-4">
             <div class="card col-6 p-4 mx-auto">
                 <img width="250" src="{{ asset('storage/' . $project->cover_image) }}" class="card-img-top"
                     alt="{{ $project->title }}">
