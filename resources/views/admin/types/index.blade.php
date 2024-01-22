@@ -14,12 +14,12 @@
             </div>
         @endif
 
-        <div class="comic-list mt-3">
+        <div class="comic-list table-responsive mt-3">
             <button class="btn btn-primary">
                 <a class="nav-link" href="{{ route('admin.type.create') }}">New type</a>
             </button>
-            <table class="table my-4 border">
-                <thead>
+            <table class="table table-hover my-4 border">
+                <thead class="table-light">
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     @forelse ($types as $type)
-                        <tr class="table-primary">
+                        <tr>
                             <th scope="row">{{ $type->id }}</th>
                             <td>{{ $type->name }}</td>
                             <td>

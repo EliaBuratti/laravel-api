@@ -84,61 +84,60 @@
 
             <div class="container-fluid">
                 <div class="row h-100" id="container-page">
+                    <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasWithBackdrop"
+                        aria-labelledby="offcanvasWithBackdropLabel">
 
-                    <nav id="sidebarMenu"
-                        class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse  eb_height">
+                        <div class="offcanvas-body">
+                            <div class=" pt-3">
+                                <ul class="nav flex-column">
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">
+                                            <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white " href="{{ route('admin.project.index') }}">
+                                            <i class="fa-solid fa-clipboard-list fa-lg fa-fw"></i> Project
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white " href="{{ route('admin.type.index') }}">
+                                            <i class="fa-solid fa-grip fa-lg fa-fw"></i> Type
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.technology.index' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white " href="{{ route('admin.technology.index') }}">
+                                            <i class="fa-solid fa-tags fa-lg fa-fw"></i> Technology
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.leads' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white " href="{{ route('admin.mail.leads') }}">
+                                            <i class="fa-solid fa-envelope fa-lg fa-fw"></i> Leads
+                                        </a>
+                                    </li>
+                                    <li
+                                        class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.sent' ? 'bg-secondary rounded-3' : '' }}">
+                                        <a class="nav-link text-white " href="{{ route('admin.mail.sent') }}">
+                                            <i class="fa-solid fa-paper-plane fa-lg fa-fw"></i> Sent
+                                        </a>
+                                    </li>
 
-                        <div class=" pt-3">
-                            <ul class="nav flex-column">
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">
-                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
-                                    </a>
-                                </li>
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.project.index') }}">
-                                        <i class="fa-solid fa-clipboard-list fa-lg fa-fw"></i> Project
-                                    </a>
-                                </li>
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.type.index') }}">
-                                        <i class="fa-solid fa-grip fa-lg fa-fw"></i> Type
-                                    </a>
-                                </li>
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.technology.index' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.technology.index') }}">
-                                        <i class="fa-solid fa-tags fa-lg fa-fw"></i> Technology
-                                    </a>
-                                </li>
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.leads' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.mail.leads') }}">
-                                        <i class="fa-solid fa-envelope fa-lg fa-fw"></i> Leads
-                                    </a>
-                                </li>
-                                <li
-                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.mail.sent' ? 'bg-secondary rounded-3' : '' }}">
-                                    <a class="nav-link text-white " href="{{ route('admin.mail.sent') }}">
-                                        <i class="fa-solid fa-paper-plane fa-lg fa-fw"></i> Sent
-                                    </a>
-                                </li>
-
-                            </ul>
+                                </ul>
 
 
+                            </div>
                         </div>
-                    </nav>
+                    </div>
 
-
-
-                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 position-relative  eb_height overflow-y-auto"
-                        id="main-content">
-                        <span class="toggle-sidebar d-none d-md-block">
-                            <i class="fa-solid fa-arrow-left fa-fw fa-lg"></i>
+                    <main class=" px-md-4 position-relative  eb_height overflow-y-auto" id="main-content">
+                        <span class="toggle-sidebar" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                            <i class="fa-solid fa-arrow-right fa-fw fa-lg"></i>
                         </span>
                         @yield('content')
                     </main>

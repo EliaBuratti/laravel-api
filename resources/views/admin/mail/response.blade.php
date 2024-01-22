@@ -14,9 +14,9 @@
             </div>
         @endif
 
-        <div class="comic-list mt-3">
-            <table class="table my-4 border">
-                <thead>
+        <div class="comic-list table-responsive mt-3">
+            <table class="table table-hover my-4 border">
+                <thead class="table-light">
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -26,14 +26,14 @@
                 </thead>
                 <tbody>
                     @forelse ($mails as $mail)
-                        <tr class="table-primary">
+                        <tr>
                             <th scope="row">{{ $mail->name }}</th>
                             <td>{{ $mail->email }}</td>
                             <td>{{ $mail->created_at }}</td>
                             <td class="d-flex align-items-center ">
                                 <div class="eb_show-message">
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
                                         data-bs-target="#modalId-{{ $mail->id }}">
                                         Show
                                     </button>

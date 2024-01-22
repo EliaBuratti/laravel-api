@@ -28,17 +28,25 @@ header {
     left: 0;
     width: 1.5rem;
     transition: all 0.5s;
-    transform: scaleX(1);
+    transform: scale(1);
     color: black;
     cursor: pointer;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: black;
+        color: white;
+        margin-left: 0.5rem;
+        transform: scale(1.2);
+    }
+
+    span {
+        padding: 1rem;
+    }
 }
 
 .active {
     transform: scaleX(0) rotate(180deg);
     width: 0;
     height: 0;
-}
-
-.eb_rotate {
-    transform: rotate(180deg);
 }
