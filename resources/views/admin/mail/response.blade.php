@@ -20,15 +20,17 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Subject</th>
                         <th scope="col">Date</th>
                         <th scope="col">Handle</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="eb_messages">
                     @forelse ($mails as $mail)
                         <tr>
                             <th scope="row">{{ $mail->name }}</th>
                             <td>{{ $mail->email }}</td>
+                            <td>{{ $mail->object }}</td>
                             <td>{{ $mail->created_at }}</td>
                             <td class="d-flex align-items-center ">
                                 <div class="eb_show-message">
@@ -146,10 +148,6 @@
                                         {{-- /.modal-dialog --}}
                                     </div>
                                     {{-- /.modal --}}
-
-
-
-
                             </td>
 
                             </td>
