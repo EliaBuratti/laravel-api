@@ -30,7 +30,6 @@
 
     <body>
         <div id="app">
-
             <header class=" d-flex justify-content-between navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
                 <div class="col-2 text-center">
                     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
@@ -79,10 +78,13 @@
                 </div>
 
             </header>
+            <div class="container-fluid position-relative">
 
+                <span class="toggle-sidebar" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                    <i class="fa-solid fa-arrow-right fa-fw fa-lg"></i>
+                </span>
 
-
-            <div class="container-fluid">
                 <div class="row h-100" id="container-page">
                     <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasWithBackdrop"
                         aria-labelledby="offcanvasWithBackdropLabel">
@@ -134,11 +136,7 @@
                         </div>
                     </div>
 
-                    <main class=" px-md-4 position-relative  eb_height overflow-y-auto" id="main-content">
-                        <span class="toggle-sidebar" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
-                            <i class="fa-solid fa-arrow-right fa-fw fa-lg"></i>
-                        </span>
+                    <main class=" px-md-4  eb_height overflow-y-auto" id="main-content">
                         @yield('content')
                     </main>
                 </div>

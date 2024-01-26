@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\NewLeadEmail;
+use App\Mail\ContactResponseEmail;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -45,13 +46,15 @@ class LeadController extends Controller
         $new_lead = Lead::create($request->all());
 
     
-        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NewLeadEmail($new_lead));
-    
-            return response()->json([
-                'response' => 'Thank you, for contact me!',
-                'success' => true,
-            ]);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NewLeadEmail($new_lead)); 
+
+        Mail::to($new_lead->email)->send(new ContactResponseEmail($new_lead)); // autoresponse email for contact.
         
+        return response()->json([
+            'response' => 'Thank you, for contact me!',
+            'success' => true,
+        ]);
+
     }
 
     public function destroy(Lead $lead)
