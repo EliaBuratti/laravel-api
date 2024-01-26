@@ -28,9 +28,15 @@
                 <tbody class="eb_messages">
                     @forelse ($mails as $mail)
                         <tr>
-                            <th scope="row">{{ $mail->name }}</th>
+                            <th scope="row">
+                                <span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $mail->name }}
+                                </span>
+                            </th>
                             <td>{{ $mail->email }}</td>
-                            <td>{{ $mail->object }}</td>
+                            <td>
+                                <span class="d-inline-block text-truncate" style="max-width: 250px;">{{ $mail->object }}
+                                </span>
+                            </td>
                             <td>{{ $mail->created_at }}</td>
                             <td class="d-flex align-items-center ">
                                 <div class="eb_show-message">
