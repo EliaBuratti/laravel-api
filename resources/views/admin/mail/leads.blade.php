@@ -121,8 +121,8 @@
                                                         <div class="mb-3">
                                                             <label for="message" class="form-label">Your
                                                                 Response</label>
-                                                            <textarea class="form-control" name="message" id="messageResponse" rows="10" cols="50" required
-                                                                minlength="10" required></textarea>
+                                                            <textarea class="form-control" name="message" id="messageResponse{{ $mail->id }}" rows="10"
+                                                                cols="50" required minlength="10" required></textarea>
                                                         </div>
 
                                                         <button type="submit" class="btn btn-primary"
@@ -133,12 +133,11 @@
                                                         </button>
                                                         <button type="button" class="btn btn-success text-white"
                                                             id="btnAssistant" onclick="genResponse({{ $mail->id }})">
-                                                            <span id="eb_loading" class="d-none">
+                                                            <span id="eb_loading{{ $mail->id }}" class="d-none">
                                                                 <i
                                                                     class="fa-solid fa-circle-notch fa-spin fa-spin-reverse fa-lg fa-fw"></i>
                                                             </span>
-                                                            <span id="eb_text-btn">
-
+                                                            <span id="eb_text-btn{{ $mail->id }}">
                                                                 Generate response <i
                                                                     class="fa-solid fa-robot fa-lg fa-fw"></i>
                                                             </span>
@@ -246,20 +245,21 @@
     </div>
 
     <script>
-        const textField = document.getElementById('messageResponse');
-        const btnAi = document.getElementById('btnAssistant');
-        const loadingAi = document.getElementById('eb_loading');
-        const textbtn = document.getElementById('eb_text-btn');
+        const loadingMarkup = '<i class="fa-solid fa-circle-notch fa-spin fa-spin-reverse fa-lg fa-fw"></i>'
 
 
 
         function sendMail(id) {
             let sendBtn = document.getElementById(`btn-send${id}`);
-            sendBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin fa-spin-reverse fa-lg fa-fw"></i>';
+            sendBtn.innerHTML = loadingMarkup;
             sendBtn.disabled = true;
         }
 
         function genResponse(id) {
+            const textbtn = document.getElementById(`eb_text-btn${id}`);
+            const loadingAi = document.getElementById(`eb_loading${id}`);
+            const textField = document.getElementById(`messageResponse${id}`);
+
 
             textbtn.classList.add('d-none');
             loadingAi.classList.remove('d-none');

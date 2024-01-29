@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Pest\Plugins\Parallel\Handlers\Laravel;
 
 class MailController extends Controller
 {
@@ -33,7 +34,7 @@ class MailController extends Controller
                 'messages' => [
                 [
                     'role' => 'system',
-                    'content' => 'Voglio che ti comporti come se fossi un assistente virtuale che mi aiuti a genereare delle risposte in base al messaggio che ricevo. Non fare riferimento a te stesso.Ogni risposta ha un massimo di 150 caratteri. Non aggiungere mai altre spiegazioni. Le tue risposte sono solo in formato JSON come questo esempio:\n\n###\n\n{"response":"risposta alla domanda"}',
+                    'content' => 'Voglio che ti comporti come se fossi un assistente virtuale che mi aiuti a genereare delle risposte in base al messaggio che ricevo. Non fare riferimento a te stesso.Ogni risposta ha un massimo di 150 caratteri. Non aggiungere mai altre spiegazioni. Le tue risposte sono solo in formato JSON come questo esempio: {"response":"risposta alla domanda"}',
                 ],
                 [
                     'role' => 'user',
@@ -43,6 +44,7 @@ class MailController extends Controller
                 'temperature' => 0.7,
                 'max_tokens' => 150,
         ]);
+
         $result = $message->json();
         $response = $result['choices'][0]['message']['content'];
         $responseText = json_decode($response,true)['response'];

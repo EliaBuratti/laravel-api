@@ -18,13 +18,13 @@ header {
     height: $hNav;
 }
 
-.eb_messages tr td,
+/* .eb_messages tr td,
 .eb_messages th {
     vertical-align: middle;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-}
+} */
 
 .eb_height {
     height: calc(100vh - $hNav);
